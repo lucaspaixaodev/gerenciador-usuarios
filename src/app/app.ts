@@ -7,5 +7,9 @@ import { UsersList } from './lists/components/users-list/users-list';
   styleUrl: './app.scss'
 })
   export class App {
-  title = signal('Hello World');
+    users = signal(['John', 'Jane', 'Jim', 'Jill']);
+
+    remove(user: string) {
+      this.users.update(users => users.filter(u => u !== user));
+    }
 }

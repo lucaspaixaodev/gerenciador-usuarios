@@ -1,5 +1,4 @@
-import { Component, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, input, output } from '@angular/core';
 @Component({
   selector: 'app-users-list',
   imports: [],
@@ -7,5 +6,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './users-list.scss',
 })
 export class UsersList {
- users = signal(['John', 'Jane', 'Jim', 'Jill']);
+  users = input.required<string[]>();
+
+  removeUser = output<string>({alias: 'remover'});
+
+  remove(user: string) {
+    this.removeUser.emit(user);
+  }
 }
