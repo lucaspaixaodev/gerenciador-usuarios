@@ -1,3 +1,6 @@
-<app-search-input [(search)]="search"></app-search-input>
-
-<app-users-list [users]="filteredUsers()" (remover)="remove($event)"></app-users-list>
+@if(isLoading()) {
+    <p>Loading users...</p>
+} @else {
+    <app-search-input [(search)]="search"></app-search-input>
+    <app-users-list [users]="filteredUsers()" (remover)="remove($event)"></app-users-list>
+}

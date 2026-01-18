@@ -1,5 +1,6 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Users } from '../../../shared/services/users';
 @Component({
   selector: 'app-users-list',
   imports: [FormsModule],
