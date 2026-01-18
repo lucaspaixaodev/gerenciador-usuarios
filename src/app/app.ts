@@ -1,13 +1,21 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { UsersList } from './lists/components/users-list/users-list';
+import { SearchInput } from './lists/components/search-input/search-input';
 @Component({
   selector: 'app-root',
-  imports: [UsersList],
+  imports: [UsersList, SearchInput],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
   export class App {
-    users = signal(['John', 'Jane', 'Jim', 'Jill']);
+    search = signal('');
+
+    users = signal(['Lucas', 'Alaine', 'Miguel']);
+
+    filteredUsers = computed(() => {
+    return this.users().filter(user => user.toLowerCase().includes(this.search().toLowerCase()));
+  }
+  );
 
     remove(user: string) {
       this.users.update(users => users.filter(u => u !== user));

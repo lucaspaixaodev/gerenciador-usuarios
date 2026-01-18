@@ -1,1 +1,3 @@
-<app-users-list [users]="users()" (remover)="remove($event)"></app-users-list>
+<app-search-input [(search)]="search"></app-search-input>
+
+<app-users-list [users]="filteredUsers()" (remover)="remove($event)"></app-users-list>
