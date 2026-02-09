@@ -20,7 +20,7 @@ export class Create {
   public criarUsuario() {
     const nomeUsuario = this.form.controls.name.value;
 
-    this.usersService.createUser({ name: nomeUsuario }).subscribe(() => {
+    this.usersService.post({ name: nomeUsuario }).subscribe(() => {
       this.router.navigateByUrl('');
     });
   }

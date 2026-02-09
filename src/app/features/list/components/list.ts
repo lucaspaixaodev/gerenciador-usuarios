@@ -35,6 +35,8 @@ export class List {
   }
 
   public remove({ id }: User) {
-    this.users.update(users => users.filter(u => u.id !== id));
+    this.usersService.delete(id).subscribe(() => {
+      this.users.update(users => users.filter(u => u.id !== id));
+    });
   }
 }

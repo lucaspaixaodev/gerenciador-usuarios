@@ -7,13 +7,17 @@ import { User, UserPayload } from '../interfaces/user';
 })
 export class UsersService {
   private _http = inject(HttpClient);
-  private _baseURL = 'http://localhost:3000';
+  private _baseURL = 'http://localhost:3000/users';
 
-  getAll() {
-    return this._http.get<User[]>(`${this._baseURL}/users`);
+  public getAll() {
+    return this._http.get<User[]>(`${this._baseURL}`);
   }
 
-  createUser(payload: UserPayload) {
-    return this._http.post<User>(`${this._baseURL}/users`, payload );
+  public post(payload: UserPayload) {
+    return this._http.post<User>(`${this._baseURL}`, payload );
+  }
+
+  public delete(id: number) {
+    return this._http.delete<{}>(`${this._baseURL}/${id}`);
   }
 }
