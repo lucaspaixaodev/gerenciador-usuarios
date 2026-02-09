@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { UsersService } from './../../shared/services/users.service';
+import { Component, inject } from '@angular/core';
+import { FormControl, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create',
@@ -8,12 +9,17 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './create.scss',
 })
 export class Create {
+  public usersService = inject(UsersService);
+
   form = new FormGroup({
-    name: new FormControl(''),
+    name: new FormControl('', { validators: Validators.required,  nonNullable: true }),
   });
 
   criarUsuario() {
     const nomeUsuario = this.form.controls.name.value;
-    console.log('Criando usuário com nome:', nomeUsuario);
+
+    this.usersService.createUser({ name: nomeUsuario }).subscribe(() => {
+      console.log('Usuário criado com sucesso!');
+    });
   }
 }

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class UsersService {
   private _http = inject(HttpClient);
@@ -10,5 +10,9 @@ export class UsersService {
 
   getAll() {
     return this._http.get<string[]>(`${this._baseURL}/users`);
+  }
+
+  createUser(payload :{name: string}) {
+    return this._http.post<{id: number, name: string}[]>(`${this._baseURL}/users`, payload );
   }
 }
