@@ -1,6 +1,7 @@
 import { UsersService } from './../../shared/services/users.service';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -10,16 +11,17 @@ import { FormControl, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Va
 })
 export class Create {
   public usersService = inject(UsersService);
+  public router = inject(Router);
 
-  form = new FormGroup({
+  public form = new FormGroup({
     name: new FormControl('', { validators: Validators.required,  nonNullable: true }),
   });
 
-  criarUsuario() {
+  public criarUsuario() {
     const nomeUsuario = this.form.controls.name.value;
 
     this.usersService.createUser({ name: nomeUsuario }).subscribe(() => {
-      console.log('Usuário criado com sucesso!');
+      this.router.navigateByUrl('');
     });
   }
 }

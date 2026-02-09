@@ -1,6 +1,7 @@
 import { Component, inject, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UsersService } from '../../../../shared/services/users.service';
+import { User } from '../../../../shared/interfaces/user';
 @Component({
   selector: 'app-users-list',
   imports: [FormsModule],
@@ -8,11 +9,11 @@ import { UsersService } from '../../../../shared/services/users.service';
   styleUrl: './users-list.scss',
 })
 export class UsersList {
-  users = input.required<string[]>();
+  users = input.required<User[]>();
 
-  removeUser = output<string>({alias: 'remover'});
+  removeUser = output<User>({alias: 'remover'});
 
-  remove(user: string) {
+  remove(user: User) {
     this.removeUser.emit(user);
   }
 }
