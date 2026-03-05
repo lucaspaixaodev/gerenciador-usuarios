@@ -1,16 +1,24 @@
 {
   "users": [
     {
-      "name": "Lucas",
+      "name": "Alaine",
       "id": 1
     },
     {
-      "name": "Alaine",
+      "name": "Miguel",
       "id": 2
     },
     {
-      "name": "Miguel",
+      "name": "Lucas",
       "id": 3
+    },
+    {
+      "name": "Chico",
+      "id": 4
+    },
+    {
+      "name": "Mandela",
+      "id": 5
     }
   ]
 }
