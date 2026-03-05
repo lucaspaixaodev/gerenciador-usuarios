@@ -1,10 +1,11 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { UsersService } from '../../../../shared/services/users.service';
 import { User } from '../../../../shared/interfaces/user';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-users-list',
-  imports: [FormsModule],
+  imports: [FormsModule, MatCardModule, MatButtonModule],
   templateUrl: './users-list.html',
   styleUrl: './users-list.scss',
 })
