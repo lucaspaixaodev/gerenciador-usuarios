@@ -6,16 +6,28 @@ import { User } from '../../../shared/interfaces/user';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { take } from 'rxjs';
 import { RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-list',
-  imports: [SearchInput, UsersList, RouterLink],
-  template: `
-    <div>
-      <a routerLink="/create">Create User</a>
-    </div>
+  imports: [SearchInput, UsersList, RouterLink, MatButtonModule],
+  styles: `
+    .action-container {
+      display: flex;
+      align-items: center;
 
-    <app-search-input [(search)]="search"></app-search-input>
+      .button-action {
+        margin-left: auto;
+      }
+    }
+  `,
+  template: `
+    <div class="action-container">
+      <app-search-input [(search)]="search"></app-search-input>
+      <div class="button-action">
+        <a matButton="elevated" routerLink="/create">Criar Usuário</a>
+      </div>
+    </div>
 
     @if (isLoading()) {
       <p>Loading users...</p>
@@ -30,7 +42,7 @@ export class List {
   public search = signal('');
   public users = signal<User[]>([]);
   public destroyRef = inject(DestroyRef);
-  
+
   constructor() {
     effect(() => {
       this.isLoading.set(true);
@@ -49,9 +61,12 @@ export class List {
   }
 
   private getUsers() {
-    this.usersService.getAll(this.search()).pipe(takeUntilDestroyed(this.destroyRef), take(1)).subscribe((users) => {
-      this.users.set(users);
-      this.isLoading.set(false);
-    });
+    this.usersService
+      .getAll(this.search())
+      .pipe(takeUntilDestroyed(this.destroyRef), take(1))
+      .subscribe((users) => {
+        this.users.set(users);
+        this.isLoading.set(false);
+      });
   }
 }
