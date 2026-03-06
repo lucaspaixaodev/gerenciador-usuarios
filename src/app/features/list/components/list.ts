@@ -11,30 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-list',
   imports: [SearchInput, UsersList, RouterLink, MatButtonModule],
-  styles: `
-    .action-container {
-      display: flex;
-      align-items: center;
-
-      .button-action {
-        margin-left: auto;
-      }
-    }
-  `,
-  template: `
-    <div class="action-container">
-      <app-search-input [(search)]="search"></app-search-input>
-      <div class="button-action">
-        <a matButton="elevated" routerLink="/create">Criar Usuário</a>
-      </div>
-    </div>
-
-    @if (isLoading()) {
-      <p>Loading users...</p>
-    } @else {
-      <app-users-list [users]="users()" (remover)="remove($event)"></app-users-list>
-    }
-  `,
+  styleUrls: ['./list.scss'],
+  templateUrl: './list.html',
 })
 export class List {
   public usersService = inject(UsersService);
