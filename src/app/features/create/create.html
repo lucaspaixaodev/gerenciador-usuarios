@@ -1,10 +1,14 @@
-<form [formGroup]="form" (ngSubmit)="criarUsuario()">
+<form [formGroup]="form" (ngSubmit)="criarUsuario()" class="form-container">
+  <mat-form-field>
+    <mat-label>Nome de usuário</mat-label>
+    <input matInput placeholder="Ex: Lucas" type="text" formControlName="name" required />
+    @if (form.controls.name.errors) {
+      <mat-error>Campo obrigatório</mat-error>
+    }
+  </mat-form-field>
 
-  <input type="text" formControlName="name" />
-
-  @if(form.controls.name.errors) {
-    <p class="error-message">Campo obrigatório</p>
-  }
-
-  <button [disabled]="form.invalid">Criar Usuário</button>
+  <div class="action-container">
+    <button type="button" matButton="elevated" routerLink="/">Cancelar</button>
+    <button matButton="filled" [disabled]="form.invalid">Criar Usuário</button>
+  </div>
 </form>
