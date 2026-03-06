@@ -4,9 +4,10 @@ import { User } from '../../../../shared/interfaces/user';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { ErrorBtn } from './directives/error-btn';
+import { TitleCasePipe } from '@angular/common';
 @Component({
   selector: 'app-users-list',
-  imports: [FormsModule, MatCardModule, MatButtonModule, ErrorBtn],
+  imports: [FormsModule, MatCardModule, MatButtonModule, ErrorBtn, TitleCasePipe],
   templateUrl: './users-list.html',
   styleUrl: './users-list.scss',
 })
