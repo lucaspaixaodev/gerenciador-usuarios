@@ -1,0 +1,13 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 400px;
+  margin: 0 auto;
+
+  .action-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+  }
+}

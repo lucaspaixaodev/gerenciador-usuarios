@@ -9,6 +9,10 @@ export class UsersService {
   private _http = inject(HttpClient);
   private _baseURL = 'http://localhost:3000/users';
 
+  public getById(id: number) {
+    return this._http.get<User>(`${this._baseURL}/${id}`);
+  }
+
   public getAll(search?: string) {
     let httpParams = new HttpParams();
 
@@ -21,6 +25,10 @@ export class UsersService {
 
   public post(payload: UserPayload) {
     return this._http.post<User>(`${this._baseURL}`, payload );
+  }
+
+  public put(id: number, payload: UserPayload) {
+    return this._http.put<User>(`${this._baseURL}/${id}`, payload);
   }
 
   public delete(id: number) {
