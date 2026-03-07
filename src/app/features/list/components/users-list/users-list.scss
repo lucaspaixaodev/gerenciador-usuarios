@@ -5,8 +5,11 @@
     display: flex;
     align-items: center;
 
-    .action-button {
+    .actions {
       margin-left: auto;
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
     }
   }
 }

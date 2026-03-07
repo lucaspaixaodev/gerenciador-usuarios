@@ -8,5 +8,6 @@
 @if (isLoading()) {
   <p>Loading users...</p>
 } @else {
-  <app-users-list [users]="users()" (remover)="remove($event)"></app-users-list>
+  <app-users-list [users]="users()" (remover)="remove($event)" (edit)="edit($event)">
+  </app-users-list>
 }

@@ -5,7 +5,7 @@ import { UsersList } from './users-list/users-list';
 import { User } from '../../../shared/interfaces/user';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { take } from 'rxjs';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -20,6 +20,7 @@ export class List {
   public search = signal('');
   public users = signal<User[]>([]);
   public destroyRef = inject(DestroyRef);
+  public router = inject(Router);
 
   constructor() {
     effect(() => {
@@ -46,5 +47,9 @@ export class List {
         this.users.set(users);
         this.isLoading.set(false);
       });
+  }
+
+  protected edit(user: User) {
+    this.router.navigate(['/edit', user.id]);
   }
 }

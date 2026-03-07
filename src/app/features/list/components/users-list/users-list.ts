@@ -22,8 +22,13 @@ import { TruncatePipe } from './pipes/truncate/truncate-pipe';
 export class UsersList {
   users = input.required<User[]>();
   removeUser = output<User>({ alias: 'remover' });
+  editUser = output<User>({ alias: 'edit' });
 
   remove(user: User) {
     this.removeUser.emit(user);
+  }
+
+  edit(user: User) {  
+    this.editUser.emit(user);  
   }
 }
